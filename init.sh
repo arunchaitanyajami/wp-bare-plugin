@@ -44,7 +44,7 @@ repo="$slug"
 
 echo
 echo "The Organization name will be used as the Namespace prefix as-entered and "
-echo "converted to lowercase for use in the repository path (i.e. XWP becomes xwp)."
+echo "converted to lowercase for use in the repository path (i.e. NEWSUK becomes newsuk)."
 echo -n "Enter your GitHub organization name, and press [ENTER]: "
 read org
 
@@ -79,7 +79,7 @@ cd "$cwd"
 
 if [[ -e $( basename "$0" ) ]]; then
     echo
-	echo "Moving up one directory outside of 'block-scaffolding-wp'"
+	echo "Moving up one directory outside of 'wp-hello-plugin'"
 	cd ..
 fi
 
@@ -91,8 +91,7 @@ fi
 
 echo
 
-# git clone "$src_repo_path" "$repo"
-git clone https://github.com/lancehamiltonrobbins/block-scaffolding-wp-arun.git "$repo"
+git clone "$src_repo_path" "$repo"
 
 cd "$repo"
 
@@ -118,19 +117,19 @@ rm -f package-lock.json
 npm install
 
 # Setup Git.
-#git init
-#git add .
-#git commit -m "Initial commit"
-#git remote add origin "git@github.com:$org_lower/$repo.git"
-#
-#if [[ "$push" == Y ]] || [[ "$push" == y ]]; then
-#    git push -u origin master
-#else
-#    echo
-#    echo "Push changes to GitHub with the following command:"
-#    echo "cd $(pwd) && git push -u origin master"
-#fi
-#
-#echo
-#echo "Plugin is located at:"
-#pwd
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin "git@github.com:$org_lower/$repo.git"
+
+if [[ "$push" == Y ]] || [[ "$push" == y ]]; then
+    git push -u origin master
+else
+    echo
+    echo "Push changes to GitHub with the following command:"
+    echo "cd $(pwd) && git push -u origin master"
+fi
+
+echo
+echo "Plugin is located at:"
+pwd
